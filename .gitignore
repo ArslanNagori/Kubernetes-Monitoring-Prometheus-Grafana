@@ -1,0 +1,15 @@
+# secrets and local files
+*.pem
+*.key
+.env
+kubeconfig*
+*.kubeconfig
+
+# scan caches
+dependency-check-data/
+.trivycache/
+
+# editor and OS
+.vscode/
+.idea/
+.DS_Store

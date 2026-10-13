@@ -1,0 +1,29 @@
+---
+# Helm values for the kube-prometheus-stack chart.
+# Used unchanged on Kind and on Amazon EKS.
+
+grafana:
+  enabled: true
+  # The admin password is NOT stored here. install-monitoring.sh creates the
+  # secret "grafana-admin" and the chart reads the credentials from it.
+  admin:
+    existingSecret: grafana-admin
+    userKey: admin-user
+    passwordKey: admin-password
+  defaultDashboardsEnabled: true
+
+prometheus:
+  prometheusSpec:
+    retention: 7d
+    # Let Prometheus pick up ServiceMonitors from any namespace.
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
